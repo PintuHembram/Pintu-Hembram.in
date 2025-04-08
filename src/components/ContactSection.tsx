@@ -70,8 +70,8 @@ const ContactSection = () => {
                 
                 <div className="flex items-center gap-2 text-foreground/80">
                   <Mail className="h-5 w-5 text-primary" />
-                  <a href="mailto:contact@pintuhembram.com" className="hover:text-primary transition-colors">
-                    contact@pintuhembram.com
+                  <a href="mailto:pintuhembram@hembram.onmicrosoft.com" className="hover:text-primary transition-colors">
+                    pintuhembram@hembram.onmicrosoft.com
                   </a>
                 </div>
                 
