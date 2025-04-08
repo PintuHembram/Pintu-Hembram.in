@@ -81,11 +81,12 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/PintuHembram",
     },
     {
-      title: "Cloud-Based File Manager",
-      description: "A secure file management system that allows users to store and share files in the cloud.",
-      image: "https://images.unsplash.com/photo-1522253601-28c422399e69?q=80&w=2070&auto=format&fit=crop",
-      tags: ["Azure", "JavaScript", "Security", "Cloud Computing"],
+      title: "Master International School Website",
+      description: "A comprehensive website for an international school featuring admissions, academics, and student resources.",
+      image: "/lovable-uploads/64edc36e-2c0b-42c7-a14e-02631236e8fa.png",
+      tags: ["React", "Responsive Design", "Education", "UI/UX"],
       githubUrl: "https://github.com/PintuHembram",
+      liveUrl: "https://github.com/PintuHembram"
     },
     {
       title: "E-commerce Demo Platform",
