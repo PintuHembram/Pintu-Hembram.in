@@ -66,12 +66,12 @@ const Project = ({ title, description, image, tags, githubUrl, liveUrl }: Projec
 const ProjectsSection = () => {
   const projects: ProjectProps[] = [
     {
-      title: "Personal Blog Site",
-      description: "A personal blog site built with modern web technologies to share my thoughts and experiences.",
-      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop",
-      tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      title: "Hembram IT Solution Pvt.Ltd Website",
+      description: "An information technology blog that provides information and commentary about all things related to information technology.",
+      image: "/lovable-uploads/42cb0790-3a54-49d4-bb39-8a7216c93fb5.png",
+      tags: ["Web Development", "IT Blog", "Information Technology", "Responsive Design"],
       githubUrl: "https://github.com/PintuHembram",
-      liveUrl: "https://hembramit.blogspot.com/"
+      liveUrl: "http://hembramit.blogspot.com/"
     },
     {
       title: "AI-Powered Study Assistant",
