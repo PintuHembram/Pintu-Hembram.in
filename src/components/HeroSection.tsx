@@ -29,7 +29,7 @@ const HeroSection = () => {
           <div className="mb-8 flex justify-center">
             <div className={`w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-accent/50 shadow-lg ${animate ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.2s' }}>
               <img 
-                src="/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png" 
+                src="/lovable-uploads/86874257-a3a0-4c14-8371-3118ac60b402.png" 
                 alt="Pintu Hembram" 
                 className="w-full h-full object-cover"
               />
