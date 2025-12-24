@@ -27,8 +27,8 @@ const ContactSection = () => {
       color: 'bg-[#0077B5]/10 hover:bg-[#0077B5]/20 text-[#0077B5]'
     },
     {
-      name: 'Twitter',
-      url: 'https://twitter.com/Coder_Pintu',
+      name: 'X (Twitter)',
+      url: 'https://x.com/Coder_Pintu',
       icon: <Twitter className="h-6 w-6" />,
       color: 'bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2]'
     },
