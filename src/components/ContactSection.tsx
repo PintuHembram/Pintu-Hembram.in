@@ -58,7 +58,7 @@ const ContactSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <Card className="border-muted bg-card/50 h-full">
-            <CardContent className="p-6 flex flex-col justify-between h-full">
+            <CardContent className="p-6 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-4">Contact Information</h3>
               
               <div className="space-y-4">
@@ -75,7 +75,7 @@ const ContactSection = () => {
                   </a>
                 </div>
                 
-                <div className="pt-2">
+                <div className="pt-2 mt-auto">
                   <h4 className="text-sm font-medium text-foreground/60 mb-3">Connect with me:</h4>
                   <div className="flex flex-wrap gap-3">
                     {socialLinks.map((link, index) => (
@@ -99,7 +99,7 @@ const ContactSection = () => {
         
         <div>
           <Card className="border-muted bg-card/50 h-full">
-            <CardContent className="p-6">
+            <CardContent className="p-6 flex flex-col h-full">
               <h3 className="text-xl font-bold mb-4">Send Me a Message</h3>
               
               <form className="space-y-4">
