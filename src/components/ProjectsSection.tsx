@@ -86,7 +86,7 @@ const ProjectsSection = () => {
       image: "/lovable-uploads/image.png",
       tags: ["React", "Responsive Design", "Education", "UI/UX"],
       githubUrl: "https://github.com/PintuHembram",
-      liveUrl: "https://github.com/PintuHembram"
+      liveUrl: "https://mispadamapur.lovable.app/"
     },
     {
       title: "E-commerce Demo Platform",
