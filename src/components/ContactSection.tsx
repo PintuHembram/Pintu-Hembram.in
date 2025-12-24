@@ -29,7 +29,7 @@ const ContactSection = () => {
     {
       name: 'X (Twitter)',
       url: 'https://x.com/Coder_Pintu',
-      icon: <X className="h-6 w-6" />,
+      icon: <Twitter className="h-6 w-6" />,
       color: 'bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2]'
     },
     {
