@@ -65,10 +65,7 @@ const ContactSection = () => {
               <div className="space-y-4">
                 <p className="text-foreground/70">
                   I am a passionate Software Engineer and Full-Stack Developer with a strong focus on building scalable, secure, and high-performance web applications. I actively work across the full development lifecycle—from requirement analysis and system design to frontend implementation, backend development, database integration, and deployment.
-
-I am open to new professional opportunities, freelance work, technical collaborations, and innovative projects where I can contribute my skills in modern web technologies, problem-solving, and system optimization. I enjoy working on projects that create real-world impact, improve user experience, and follow clean architecture and best development practices.
-
-If you are looking to collaborate on a product, need a reliable full-stack developer for your project, or want to discuss ideas related to software engineering, web development, or technology solutions, feel free to connect with me through any of the platforms listed below. I am always open to meaningful conversations and long-term professional collaborations..
+                  Feel free to reach out to me through any of these platforms.
                 </p>
                 
                 <div className="flex items-center gap-2 text-foreground/80">
