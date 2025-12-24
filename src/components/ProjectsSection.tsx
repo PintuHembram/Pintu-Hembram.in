@@ -83,7 +83,7 @@ const ProjectsSection = () => {
     {
       title: "Master International School Website",
       description: "A comprehensive website for an international school featuring admissions, academics, and student resources.",
-      image: "/lovable-uploads/64edc36e-2c0b-42c7-a14e-02631236e8fa.png",
+      image: "/lovable-uploads/image.png",
       tags: ["React", "Responsive Design", "Education", "UI/UX"],
       githubUrl: "https://github.com/PintuHembram",
       liveUrl: "https://github.com/PintuHembram"
