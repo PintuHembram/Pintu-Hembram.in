@@ -2,15 +2,14 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
-  Github, 
-  Mail, 
-  Linkedin, 
-  ExternalLink, 
+import {
+  Github,
+  Mail,
+  Linkedin,
+  ExternalLink,
   Instagram,
   Twitter,
   Youtube,
-  X
 } from 'lucide-react';
 
 const ContactSection = () => {
