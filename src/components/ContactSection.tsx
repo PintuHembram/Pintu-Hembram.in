@@ -9,7 +9,8 @@ import {
   ExternalLink, 
   Instagram,
   Twitter,
-  Youtube 
+  Youtube,
+  X
 } from 'lucide-react';
 
 const ContactSection = () => {
