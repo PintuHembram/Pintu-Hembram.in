@@ -1,52 +1,39 @@
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import React from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { ExternalLink, Github } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Github, Code2 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 interface ProjectProps {
   title: string;
   description: string;
   image?: string;
-  imageDark?: string;
   tags: string[];
   githubUrl?: string;
   liveUrl?: string;
 }
 
-const Project = ({ title, description, image, imageDark, tags, githubUrl, liveUrl }: ProjectProps) => {
+const Project = ({ title, description, image, tags, githubUrl, liveUrl }: ProjectProps) => {
   return (
-    <Card className="overflow-hidden border-muted bg-card/50 hover:shadow-md transition-all dark:bg-card/60">
+    <Card className="overflow-hidden border-muted bg-card/50 hover:shadow-md transition-all">
       {image && (
         <div className="h-48 overflow-hidden">
-          <picture>
-            {/* prefer explicit dark image when provided, otherwise try `-dark` filename */}
-            <source
-              srcSet={
-                imageDark ?? (image ? image.replace(/\.(png|jpe?g)$/i, (m) => `-dark${m}`) : '')
-              }
-              media="(prefers-color-scheme: dark)"
-            />
-            <img
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
-            />
-          </picture>
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+          />
         </div>
       )}
       
       <CardContent className="p-6">
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-foreground/70 dark:text-foreground/60 mb-4">{description}</p>
+        <p className="text-foreground/70 mb-4">{description}</p>
         
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag, index) => (
-            <Badge
-              key={index}
-              variant="secondary"
-              className="bg-muted text-foreground/80 dark:bg-muted/70 dark:text-foreground/90"
-            >
+            <Badge key={index} variant="secondary" className="bg-muted text-foreground/80">
               {tag}
             </Badge>
           ))}
@@ -82,7 +69,6 @@ const ProjectsSection = () => {
       title: "Hembram IT Solution Pvt.Ltd Website",
       description: "An information technology blog that provides information and commentary about all things related to information technology.",
       image: "/lovable-uploads/42cb0790-3a54-49d4-bb39-8a7216c93fb5.png",
-      imageDark: "/lovable-uploads/42cb0790-3a54-49d4-bb39-8a7216c93fb5-dark.png",
       tags: ["Web Development", "IT Blog", "Information Technology", "Responsive Design"],
       githubUrl: "https://github.com/PintuHembram",
       liveUrl: "http://hembramit.blogspot.com/"
