@@ -104,6 +104,14 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/PintuHembram",
       liveUrl: "https://aihlac.lovable.app/"
     },
+     {
+      title: "All India Ho Language Action Committee",
+      description: "The All India Ho Language Action Committee (AIHLAC) is a dedicated community organization working tirelessly to preserve, promote, and celebrate the Ho language and cultural heritage across India.",
+      image: "/lovable-uploads/imaihlac.png",
+      tags: ["HTML", "CSS", "JavaScript", "Ho Language"],
+      githubUrl: "https://github.com/PintuHembram",
+      liveUrl: "https://aihlac.lovable.app/"
+    },
   ];
 
   return (
