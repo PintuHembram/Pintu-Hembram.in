@@ -1,13 +1,12 @@
 
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import {
-  Github,
-  Mail,
-  Linkedin,
   ExternalLink,
+  Github,
   Instagram,
+  Linkedin,
+  Mail,
   Twitter,
   Youtube,
 } from 'lucide-react';
@@ -58,8 +57,8 @@ const ContactSection = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <Card className="border-muted bg-card/50">
-            <CardContent className="p-6">
+          <Card className="border-muted bg-card/50 h-full">
+            <CardContent className="p-6 flex flex-col justify-between h-full">
               <h3 className="text-xl font-bold mb-4">Contact Information</h3>
               
               <div className="space-y-4">
