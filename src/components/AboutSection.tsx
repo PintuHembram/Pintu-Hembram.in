@@ -131,7 +131,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Experience</h3>
-                  <p className="text-foreground/80 font-medium">Hembram IT Solutions Pvt.Ltd</p>
+                  <p className="text-foreground/80 font-medium">Hembram IT Solutions Pvt. Ltd</p>
                   <p className="text-foreground/60 text-sm">Working on various technology projects</p>
                 </div>
               </div>
