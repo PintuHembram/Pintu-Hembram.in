@@ -59,7 +59,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-              <div className="space-y-4">
+        <div className="space-y-4">
           <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -68,14 +68,13 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">High Schooling</h3>
-                  <p className="text-foreground/80 font-medium">Board of Secondary Education, Odisha </p>
-                  <p className="text-foreground/60 text-sm">Govt High School Chandikhole, jajapur </p>
+                  <p className="text-foreground/80 font-medium">Board of Secondary Education, Odisha</p>
+                  <p className="text-foreground/60 text-sm">Govt High School Chandikhole, Jajapur</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-                        <div className="space-y-4">
           <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -84,14 +83,13 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Higher Secondary School</h3>
-                  <p className="text-foreground/80 font-medium">Council of Higher Secondary Education, Odisha/ Arts Stream </p>
-                  <p className="text-foreground/60 text-sm">Salabani Gram Panchayat Junior College, Salabani, Anandapur </p>
+                  <p className="text-foreground/80 font-medium">Council of Higher Secondary Education, Odisha / Arts Stream</p>
+                  <p className="text-foreground/60 text-sm">Salabani Gram Panchayat Junior College, Salabani, Anandapur</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-        <div className="space-y-4">
           <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -106,8 +104,7 @@ const AboutSection = () => {
               </div>
             </CardContent>
           </Card>
-          
-                  <div className="space-y-4">
+
           <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
             <CardContent className="p-6">
               <div className="flex items-start gap-4">
@@ -116,7 +113,7 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Bachelor of Technology</h3>
-                  <p className="text-foreground/80 font-medium">Computer Science Engineering (BPUT, Roukela)</p>
+                  <p className="text-foreground/80 font-medium">Computer Science Engineering (BPUT, Rourkela)</p>
                   <p className="text-foreground/60 text-sm">Bhadrak Institute of Engineering & Technology (BIET)</p>
                 </div>
               </div>
