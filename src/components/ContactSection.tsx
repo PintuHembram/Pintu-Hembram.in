@@ -99,7 +99,7 @@ const ContactSection = () => {
         
         <div>
           <Card className="border-muted bg-card/50 h-full">
-            <CardContent className="p-6 flex flex-col h-full">
+            <CardContent className="p-6">
               <h3 className="text-xl font-bold mb-4">Send Me a Message</h3>
               
               <form className="space-y-4">
