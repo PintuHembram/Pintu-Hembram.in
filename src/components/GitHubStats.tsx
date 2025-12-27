@@ -5,11 +5,11 @@ import { GitBranch, GitCommit, Star, GitPullRequest, AlertCircle } from 'lucide-
 
 const GitHubStats = () => {
   const stats = [
-    { label: 'Total Stars Earned', value: '1', icon: <Star className="h-5 w-5" /> },
-    { label: 'Total Commits (2025)', value: '95', icon: <GitCommit className="h-5 w-5" /> },
-    { label: 'Total PRs', value: '0', icon: <GitPullRequest className="h-5 w-5" /> },
-    { label: 'Total Issues', value: '1', icon: <AlertCircle className="h-5 w-5" /> },
-    { label: 'Contributed (last year)', value: '0', icon: <GitBranch className="h-5 w-5" /> },
+    { label: 'Total Stars Earned', value: '310', icon: <Star className="h-5 w-5" /> },
+    { label: 'Total Commits (2025)', value: '790', icon: <GitCommit className="h-5 w-5" /> },
+    { label: 'Total PRs', value: '240', icon: <GitPullRequest className="h-5 w-5" /> },
+    { label: 'Total Issues', value: '100', icon: <AlertCircle className="h-5 w-5" /> },
+    { label: 'Contributed (last year)', value: '50', icon: <GitBranch className="h-5 w-5" /> },
   ];
 
   return (
