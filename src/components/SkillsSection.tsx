@@ -70,6 +70,9 @@ const SkillsSection = () => {
 
   const cloudServices = [
     { name: 'Azure', color: 'azure', icon: <Server size={16} /> },
+    { name: 'AWS', color: 'yellow', icon: <Server size={16} /> },
+    { name: 'Google Cloud', color: 'yellow', icon: <Server size={16} /> },
+    { name: 'Heroku', color: 'purple', icon: <Server size={16} /> },
   ];
 
   const devTools = [
