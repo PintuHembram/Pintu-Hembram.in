@@ -80,8 +80,8 @@ const SkillsSection = () => {
     { name: 'GitHub Actions', color: 'purple', icon: <PanelTop size={16} /> },
     { name: 'Windows Terminal', color: 'blue', icon: <Terminal size={16} /> },
     { name: 'PowerShell', color: 'blue', icon: <Terminal size={16} /> },
-    { name: 'Visual Studio Code', color: 'blue', icon: <Search size={16} /> },
-    { name: 'Postman', color: 'orange', icon: <Search size={16} /> },
+    { name: 'Visual Studio Code', color: 'blue', icon: <Terminal size={16} /> },
+    { name: 'Postman', color: 'orange', icon: <Terminal size={16} /> },
   ];
 
   const databases = [
