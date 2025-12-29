@@ -76,9 +76,9 @@ const SkillsSection = () => {
   ];
 
   const devTools = [
-    { name: 'GitHub', color: 'github', icon: <PanelTop size={16} /> },
-    { name: 'GitHub Pages', color: 'github', icon: <PanelTop size={16} /> },
-    { name: 'GitHub Actions', color: 'github', icon: <PanelTop size={16} /> },
+    { name: 'GitHub', color: 'purple', icon: <PanelTop size={16} /> },
+    { name: 'GitHub Pages', color: 'purple', icon: <PanelTop size={16} /> },
+    { name: 'GitHub Actions', color: 'purple', icon: <PanelTop size={16} /> },
     { name: 'Windows Terminal', color: 'blue', icon: <Terminal size={16} /> },
     { name: 'PowerShell', color: 'blue', icon: <Terminal size={16} /> },
   ];
