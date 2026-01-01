@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Edit2, Trash2, LogOut, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { Plus, Edit2, Trash2, LogOut, ArrowLeft, Eye, EyeOff, Upload, X, Loader2 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 
 interface BlogPost {
@@ -37,6 +37,8 @@ const Admin = () => {
   const [content, setContent] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [published, setPublished] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -175,6 +177,58 @@ const Admin = () => {
     navigate('/');
   };
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({ title: 'Invalid file', description: 'Please upload an image file.', variant: 'destructive' });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: 'File too large', description: 'Maximum file size is 5MB.', variant: 'destructive' });
+      return;
+    }
+
+    setUploading(true);
+
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('blog-images')
+      .upload(fileName, file);
+
+    if (uploadError) {
+      toast({ title: 'Upload failed', description: uploadError.message, variant: 'destructive' });
+      setUploading(false);
+      return;
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('blog-images')
+      .getPublicUrl(fileName);
+
+    setCoverImage(publicUrl);
+    setUploading(false);
+    toast({ title: 'Image uploaded!' });
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setCoverImage('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   if (!user) return null;
 
   return (
@@ -303,12 +357,49 @@ const Admin = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="coverImage">Cover Image URL</Label>
-                    <Input
-                      id="coverImage"
-                      value={coverImage}
-                      onChange={(e) => setCoverImage(e.target.value)}
-                      placeholder="https://example.com/image.jpg"
+                    <Label>Cover Image</Label>
+                    {coverImage ? (
+                      <div className="relative rounded-lg overflow-hidden border border-border">
+                        <img
+                          src={coverImage}
+                          alt="Cover preview"
+                          className="w-full h-40 object-cover"
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          className="absolute top-2 right-2"
+                          onClick={handleRemoveImage}
+                        >
+                          <X size={16} />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div
+                        className="border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 transition-colors"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        {uploading ? (
+                          <div className="flex flex-col items-center gap-2">
+                            <Loader2 size={24} className="animate-spin text-muted-foreground" />
+                            <span className="text-sm text-muted-foreground">Uploading...</span>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center gap-2">
+                            <Upload size={24} className="text-muted-foreground" />
+                            <span className="text-sm text-muted-foreground">Click to upload image</span>
+                            <span className="text-xs text-muted-foreground">Max 5MB</span>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
                     />
                   </div>
 
