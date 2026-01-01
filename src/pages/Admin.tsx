@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
+import { RichTextEditor } from '@/components/RichTextEditor';
 import { Plus, Edit2, Trash2, LogOut, ArrowLeft, Eye, EyeOff, Upload, X, Loader2 } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
 
@@ -345,15 +346,8 @@ const Admin = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="content">Content (HTML)</Label>
-                    <Textarea
-                      id="content"
-                      value={content}
-                      onChange={(e) => setContent(e.target.value)}
-                      placeholder="<p>Your post content...</p>"
-                      rows={10}
-                      className="font-mono text-sm"
-                    />
+                    <Label>Content</Label>
+                    <RichTextEditor content={content} onChange={setContent} />
                   </div>
 
                   <div className="space-y-2">
