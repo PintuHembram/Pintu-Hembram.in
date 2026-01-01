@@ -2,6 +2,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
+import TextAlign from '@tiptap/extension-text-align';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,6 +21,10 @@ import {
   Link as LinkIcon,
   Image as ImageIcon,
   Minus,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
 } from 'lucide-react';
 
 interface RichTextEditorProps {
@@ -41,6 +46,9 @@ export const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
         HTMLAttributes: {
           class: 'rounded-lg max-w-full',
         },
+      }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
       }),
     ],
     content,
@@ -183,6 +191,37 @@ export const RichTextEditor = ({ content, onChange }: RichTextEditorProps) => {
           title="Horizontal Rule"
         >
           <Minus size={16} />
+        </ToolbarButton>
+
+        <div className="w-px h-8 bg-border mx-1" />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          active={editor.isActive({ textAlign: 'left' })}
+          title="Align Left"
+        >
+          <AlignLeft size={16} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          active={editor.isActive({ textAlign: 'center' })}
+          title="Align Center"
+        >
+          <AlignCenter size={16} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          active={editor.isActive({ textAlign: 'right' })}
+          title="Align Right"
+        >
+          <AlignRight size={16} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+          active={editor.isActive({ textAlign: 'justify' })}
+          title="Justify"
+        >
+          <AlignJustify size={16} />
         </ToolbarButton>
 
         <div className="w-px h-8 bg-border mx-1" />
