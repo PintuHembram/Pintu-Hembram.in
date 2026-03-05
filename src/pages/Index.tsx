@@ -6,6 +6,7 @@ import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import GitHubStats from '@/components/GitHubStats';
 import ProjectsSection from '@/components/ProjectsSection';
+import SocialFeedSection from '@/components/SocialFeedSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
