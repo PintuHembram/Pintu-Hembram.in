@@ -1,25 +1,26 @@
-
-import React, { useState } from 'react';
-import { ExternalLink, Heart, MessageCircle, Repeat2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ExternalLink, Heart, MessageCircle, Repeat2, RefreshCw } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { supabase } from '@/integrations/supabase/client';
 
 type Platform = 'all' | 'twitter' | 'instagram' | 'linkedin';
 
 interface SocialPost {
   id: string;
   platform: 'twitter' | 'instagram' | 'linkedin';
-  profileImage: string;
-  username: string;
-  handle: string;
-  text: string;
-  image?: string;
-  date: string;
-  link: string;
+  profile_image: string | null;
+  username: string | null;
+  handle: string | null;
+  text_content: string | null;
+  post_image: string | null;
+  posted_at: string | null;
+  post_url: string | null;
   likes: number;
   comments: number;
-  shares?: number;
+  shares: number;
 }
 
 const PLATFORM_CONFIG = {
@@ -54,86 +55,37 @@ const PLATFORM_CONFIG = {
 
 const SAMPLE_POSTS: SocialPost[] = [
   {
-    id: '1',
-    platform: 'twitter',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
-    username: 'Pintu Hembram',
-    handle: '@pintuhembram',
-    text: '🚀 Just deployed my latest project using React and Tailwind CSS! The developer experience is incredible. #webdev #react #tailwindcss',
-    date: '2026-03-04',
-    link: 'https://x.com',
-    likes: 42,
-    comments: 8,
-    shares: 12,
-  },
-  {
-    id: '2',
+    id: 'sample-ig-1',
     platform: 'instagram',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
+    profile_image: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
     username: 'Pintu Hembram',
     handle: '@pintuhembram',
-    text: 'Behind the scenes of my coding setup 💻✨ Clean desk, clear mind.',
-    image: '/lovable-uploads/86874257-a3a0-4c14-8371-3118ac60b402.png',
-    date: '2026-03-02',
-    link: 'https://instagram.com',
+    text_content: 'Behind the scenes of my coding setup 💻✨ Clean desk, clear mind.',
+    post_image: '/lovable-uploads/86874257-a3a0-4c14-8371-3118ac60b402.png',
+    posted_at: '2026-03-02',
+    post_url: 'https://instagram.com',
     likes: 156,
     comments: 23,
+    shares: 0,
   },
   {
-    id: '3',
+    id: 'sample-li-1',
     platform: 'linkedin',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
+    profile_image: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
     username: 'Pintu Hembram',
     handle: 'pintuhembram',
-    text: "Excited to share that I've completed my certification in cloud computing! Always learning, always growing. 🎓 #CloudComputing #CareerGrowth",
-    date: '2026-02-28',
-    link: 'https://linkedin.com',
+    text_content: "Excited to share that I've completed my certification in cloud computing! Always learning, always growing. 🎓 #CloudComputing #CareerGrowth",
+    post_image: null,
+    posted_at: '2026-02-28',
+    post_url: 'https://linkedin.com',
     likes: 89,
     comments: 15,
     shares: 7,
   },
-  {
-    id: '4',
-    platform: 'twitter',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
-    username: 'Pintu Hembram',
-    handle: '@pintuhembram',
-    text: 'TypeScript tip: Use discriminated unions for cleaner error handling in your APIs. Thread 🧵👇',
-    date: '2026-02-25',
-    link: 'https://x.com',
-    likes: 78,
-    comments: 14,
-    shares: 31,
-  },
-  {
-    id: '5',
-    platform: 'instagram',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
-    username: 'Pintu Hembram',
-    handle: '@pintuhembram',
-    text: 'Weekend hackathon vibes 🔥 Built a full-stack app in 48 hours!',
-    image: '/lovable-uploads/64edc36e-2c0b-42c7-a14e-02631236e8fa.png',
-    date: '2026-02-22',
-    link: 'https://instagram.com',
-    likes: 203,
-    comments: 34,
-  },
-  {
-    id: '6',
-    platform: 'linkedin',
-    profileImage: '/lovable-uploads/76bb4224-f535-45d7-a1f4-264521991156.png',
-    username: 'Pintu Hembram',
-    handle: 'pintuhembram',
-    text: 'Great article on the future of web development. The shift toward server components and edge computing is fascinating. What are your thoughts?',
-    date: '2026-02-18',
-    link: 'https://linkedin.com',
-    likes: 45,
-    comments: 9,
-    shares: 3,
-  },
 ];
 
-const formatDate = (dateStr: string) => {
+const formatDate = (dateStr: string | null) => {
+  if (!dateStr) return '';
   const date = new Date(dateStr);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -151,17 +103,95 @@ const FILTER_TABS: { key: Platform; label: string }[] = [
   { key: 'linkedin', label: 'LinkedIn' },
 ];
 
+const PostCardSkeleton = () => (
+  <Card className="overflow-hidden border-border/50 bg-card">
+    <CardContent className="p-5">
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center gap-3">
+          <Skeleton className="h-10 w-10 rounded-full" />
+          <div>
+            <Skeleton className="h-4 w-24 mb-1" />
+            <Skeleton className="h-3 w-16" />
+          </div>
+        </div>
+        <Skeleton className="h-5 w-12 rounded-full" />
+      </div>
+      <Skeleton className="h-4 w-full mb-2" />
+      <Skeleton className="h-4 w-3/4 mb-3" />
+      <div className="flex items-center justify-between pt-3 border-t border-border/30">
+        <Skeleton className="h-3 w-32" />
+        <Skeleton className="h-3 w-16" />
+      </div>
+    </CardContent>
+  </Card>
+);
+
 const SocialFeedSection = () => {
   const [activeFilter, setActiveFilter] = useState<Platform>('all');
+  const [twitterPosts, setTwitterPosts] = useState<SocialPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchTwitterPosts = async () => {
+    try {
+      // First try cache from database
+      const { data: cached } = await supabase
+        .from('social_posts')
+        .select('*')
+        .eq('platform', 'twitter')
+        .order('posted_at', { ascending: false })
+        .limit(10);
+
+      if (cached && cached.length > 0) {
+        setTwitterPosts(cached as unknown as SocialPost[]);
+      }
+
+      // Then trigger edge function to refresh
+      const { data, error } = await supabase.functions.invoke('fetch-tweets');
+      if (!error && data?.posts?.length > 0) {
+        setTwitterPosts(data.posts);
+      }
+    } catch (err) {
+      console.error('Error fetching tweets:', err);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTwitterPosts();
+  }, []);
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    fetchTwitterPosts();
+  };
+
+  const allPosts = [...twitterPosts, ...SAMPLE_POSTS].sort((a, b) => {
+    const dateA = a.posted_at ? new Date(a.posted_at).getTime() : 0;
+    const dateB = b.posted_at ? new Date(b.posted_at).getTime() : 0;
+    return dateB - dateA;
+  });
 
   const filteredPosts =
     activeFilter === 'all'
-      ? SAMPLE_POSTS
-      : SAMPLE_POSTS.filter((p) => p.platform === activeFilter);
+      ? allPosts
+      : allPosts.filter((p) => p.platform === activeFilter);
 
   return (
     <section id="social-feed" className="section-container">
-      <h2 className="section-heading">Social Feed</h2>
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="section-heading mb-0">Social Feed</h2>
+        <button
+          onClick={handleRefresh}
+          disabled={refreshing}
+          className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted transition-colors disabled:opacity-50"
+          aria-label="Refresh feed"
+        >
+          <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
+        </button>
+      </div>
       <p className="text-muted-foreground mb-8 max-w-2xl">
         Stay updated with my latest thoughts, projects, and insights across platforms.
       </p>
@@ -185,79 +215,79 @@ const SocialFeedSection = () => {
 
       {/* Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredPosts.map((post) => {
-          const config = PLATFORM_CONFIG[post.platform];
-          return (
-            <Card
-              key={post.id}
-              className="group overflow-hidden border-border/50 bg-card hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
-            >
-              <CardContent className="p-5">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="h-10 w-10 ring-2 ring-border">
-                      <AvatarImage src={post.profileImage} alt={post.username} loading="lazy" />
-                      <AvatarFallback>PH</AvatarFallback>
-                    </Avatar>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold text-card-foreground truncate">{post.username}</p>
-                      <p className="text-xs text-muted-foreground truncate">{post.handle}</p>
+        {loading
+          ? Array.from({ length: 3 }).map((_, i) => <PostCardSkeleton key={i} />)
+          : filteredPosts.map((post) => {
+              const config = PLATFORM_CONFIG[post.platform];
+              return (
+                <Card
+                  key={post.id}
+                  className="group overflow-hidden border-border/50 bg-card hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+                >
+                  <CardContent className="p-5">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10 ring-2 ring-border">
+                          <AvatarImage src={post.profile_image || ''} alt={post.username || ''} loading="lazy" />
+                          <AvatarFallback>PH</AvatarFallback>
+                        </Avatar>
+                        <div className="min-w-0">
+                          <p className="text-sm font-semibold text-card-foreground truncate">{post.username}</p>
+                          <p className="text-xs text-muted-foreground truncate">{post.handle}</p>
+                        </div>
+                      </div>
+                      <Badge className={`${config.color} shrink-0 gap-1 text-xs`}>
+                        {config.icon}
+                        <span className="hidden sm:inline">{config.label}</span>
+                      </Badge>
                     </div>
-                  </div>
-                  <Badge className={`${config.color} shrink-0 gap-1 text-xs`}>
-                    {config.icon}
-                    <span className="hidden sm:inline">{config.label}</span>
-                  </Badge>
-                </div>
 
-                {/* Content */}
-                <p className="text-sm text-card-foreground/90 leading-relaxed mb-3">{post.text}</p>
+                    <p className="text-sm text-card-foreground/90 leading-relaxed mb-3">{post.text_content}</p>
 
-                {/* Image */}
-                {post.image && (
-                  <div className="rounded-lg overflow-hidden mb-3 border border-border/30">
-                    <img
-                      src={post.image}
-                      alt="Post attachment"
-                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                )}
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-3 border-t border-border/30">
-                  <div className="flex items-center gap-4 text-muted-foreground">
-                    <span className="flex items-center gap-1 text-xs">
-                      <Heart className="w-3.5 h-3.5" /> {post.likes}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs">
-                      <MessageCircle className="w-3.5 h-3.5" /> {post.comments}
-                    </span>
-                    {post.shares !== undefined && (
-                      <span className="flex items-center gap-1 text-xs">
-                        <Repeat2 className="w-3.5 h-3.5" /> {post.shares}
-                      </span>
+                    {post.post_image && (
+                      <div className="rounded-lg overflow-hidden mb-3 border border-border/30">
+                        <img
+                          src={post.post_image}
+                          alt="Post attachment"
+                          className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </div>
                     )}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
-                    <a
-                      href={post.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      aria-label="View original post"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+
+                    <div className="flex items-center justify-between pt-3 border-t border-border/30">
+                      <div className="flex items-center gap-4 text-muted-foreground">
+                        <span className="flex items-center gap-1 text-xs">
+                          <Heart className="w-3.5 h-3.5" /> {post.likes}
+                        </span>
+                        <span className="flex items-center gap-1 text-xs">
+                          <MessageCircle className="w-3.5 h-3.5" /> {post.comments}
+                        </span>
+                        {post.shares > 0 && (
+                          <span className="flex items-center gap-1 text-xs">
+                            <Repeat2 className="w-3.5 h-3.5" /> {post.shares}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground">{formatDate(post.posted_at)}</span>
+                        {post.post_url && (
+                          <a
+                            href={post.post_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-primary transition-colors"
+                            aria-label="View original post"
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
       </div>
     </section>
   );

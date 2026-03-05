@@ -53,6 +53,57 @@ export type Database = {
         }
         Relationships: []
       }
+      social_posts: {
+        Row: {
+          comments: number | null
+          fetched_at: string | null
+          handle: string | null
+          id: string
+          likes: number | null
+          platform: string
+          post_id: string
+          post_image: string | null
+          post_url: string | null
+          posted_at: string | null
+          profile_image: string | null
+          shares: number | null
+          text_content: string | null
+          username: string | null
+        }
+        Insert: {
+          comments?: number | null
+          fetched_at?: string | null
+          handle?: string | null
+          id?: string
+          likes?: number | null
+          platform?: string
+          post_id: string
+          post_image?: string | null
+          post_url?: string | null
+          posted_at?: string | null
+          profile_image?: string | null
+          shares?: number | null
+          text_content?: string | null
+          username?: string | null
+        }
+        Update: {
+          comments?: number | null
+          fetched_at?: string | null
+          handle?: string | null
+          id?: string
+          likes?: number | null
+          platform?: string
+          post_id?: string
+          post_image?: string | null
+          post_url?: string | null
+          posted_at?: string | null
+          profile_image?: string | null
+          shares?: number | null
+          text_content?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
