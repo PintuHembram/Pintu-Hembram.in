@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				mono: ['JetBrains Mono', 'monospace'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -63,26 +67,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				tech: {
-					'blue': '#0074D9',
-					'orange': '#FF851B',
-					'red': '#FF4136',
-					'azure': '#0089D6',
-					'yellow': '#F5D142',
-					'green': '#2ECC40',
-					'python': '#306998',
-					'java': '#f89820',
-					'mysql': '#00758F',
-					'mongodb': '#4DB33D',
-					'html': '#E34F26',
-					'css': '#264de4',
-					'javascript': '#F0DB4F',
-					'github': '#171515',
-					'canva': '#00C4CC'
-				}
-			},
-			backgroundImage: {
-				'hero-pattern': 'linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9))',
+				cyber: {
+					green: 'hsl(var(--cyber-green))',
+					amber: 'hsl(var(--cyber-amber))',
+					red: 'hsl(var(--cyber-red))',
+					blue: 'hsl(var(--cyber-blue))',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -91,35 +81,37 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'fade-in': {
-					'0%': { opacity: '0' },
-					'100%': { opacity: '1' }
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
 				'slide-up': {
 					'0%': { transform: 'translateY(20px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
-				}
+				},
+				'flicker': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.8' },
+				},
+				'typing': {
+					'0%': { width: '0' },
+					'100%': { width: '100%' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
-				'slide-up': 'slide-up 0.5s ease-out forwards'
+				'slide-up': 'slide-up 0.5s ease-out forwards',
+				'flicker': 'flicker 3s ease-in-out infinite',
+				'typing': 'typing 2s steps(30) forwards',
 			}
 		}
 	},
