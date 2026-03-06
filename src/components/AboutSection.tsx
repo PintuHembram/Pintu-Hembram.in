@@ -1,175 +1,103 @@
 
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { 
   Briefcase, 
   GraduationCap, 
   Brain, 
   Code, 
-  Cloud 
+  Cloud,
+  FileText,
+  Target
 } from 'lucide-react';
 
 const AboutSection = () => {
   return (
     <section id="about" className="section-container">
-      <h2 className="section-heading">About Me</h2>
+      <div className="flex items-center gap-3 mb-2">
+        <Target className="h-5 w-5 text-primary" />
+        <h2 className="section-heading">INTEL BRIEFING</h2>
+      </div>
+      <p className="text-muted-foreground text-xs font-mono mb-8 tracking-wider">// PERSONNEL DOSSIER — CLASSIFICATION: PUBLIC</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
-          <p className="text-lg text-foreground/80">
-            👋 Hi there! I'm Pintu Hembram, a Computer Science Engineering student with a passion for technology and problem-solving.
-          </p>
+          <div className="border border-border bg-card/50 p-5 rounded bracket-card">
+            <p className="text-sm text-foreground/80 leading-relaxed">
+              Operative <span className="text-primary font-mono font-semibold">PINTU HEMBRAM</span> — Computer Science Engineering specialist with high proficiency in problem-solving, system design, and emerging technologies.
+            </p>
+          </div>
           
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="mt-1 bg-primary/20 p-2 rounded-md">
-                <Brain className="h-5 w-5 text-primary" />
+          <div className="space-y-3">
+            {[
+              { icon: Brain, title: 'Tactical Problem Solver', desc: 'Expert at analyzing complex systems and deploying elegant solutions.' },
+              { icon: Code, title: 'Tech Operations Specialist', desc: 'Proficient in AI/ML, Web Development, and systems engineering.' },
+              { icon: Cloud, title: 'Continuous Reconnaissance', desc: 'Actively expanding capabilities in Python, JavaScript, and Cloud infrastructure.' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-3 border border-border/50 bg-muted/20 rounded transition-colors hover:border-primary/30 hover:bg-primary/5">
+                <div className="mt-0.5 p-1.5 bg-primary/10 rounded">
+                  <item.icon className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-mono font-medium text-foreground">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-medium text-foreground">Passionate Problem Solver</h3>
-                <p className="text-foreground/70">
-                  I enjoy tackling complex problems and finding elegant solutions.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-3">
-              <div className="mt-1 bg-primary/20 p-2 rounded-md">
-                <Code className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground">Technology Enthusiast</h3>
-                <p className="text-foreground/70">
-                  Interested in Artificial Intelligence, Machine Learning, and Web Development.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-3">
-              <div className="mt-1 bg-primary/20 p-2 rounded-md">
-                <Cloud className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium text-foreground">Continuous Learner</h3>
-                <p className="text-foreground/70">
-                  Currently enhancing my skills in Python, JavaScript, and Cloud Computing.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="space-y-4">
-          <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-md">
-                  <GraduationCap className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">High Schooling</h3>
-                  <p className="text-foreground/80 font-medium">Board of Secondary Education, Odisha</p>
-                  <p className="text-foreground/60 text-sm">Govt High School Chandikhole, Jajapur</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-md">
-                  <GraduationCap className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">Higher Secondary School</h3>
-                  <p className="text-foreground/80 font-medium">Council of Higher Secondary Education, Odisha / Arts Stream</p>
-                  <p className="text-foreground/60 text-sm">Salabani Gram Panchayat Junior College, Salabani, Anandapur</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-md">
-                  <GraduationCap className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">Diploma</h3>
-                  <p className="text-foreground/80 font-medium">Information Technology (SCTEVT, Odisha)</p>
-                  <p className="text-foreground/60 text-sm">Barapada School of Engineering and Technology, Bhadrak</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-md">
-                  <GraduationCap className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">Bachelor of Technology</h3>
-                  <p className="text-foreground/80 font-medium">Computer Science Engineering (BPUT, Rourkela)</p>
-                  <p className="text-foreground/60 text-sm">Bhadrak Institute of Engineering & Technology (BIET)</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="overflow-hidden border-muted bg-card/50 hover:bg-card/80 transition-colors">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-primary/20 p-3 rounded-md">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">Experience</h3>
-                  <p className="text-foreground/80 font-medium">Hembram IT Solutions Pvt. Ltd</p>
-                  <p className="text-foreground/60 text-sm">Working on Various Technology Projects</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="space-y-3">
+          <div className="text-xs font-mono text-primary/60 mb-2 flex items-center gap-2">
+            <FileText className="h-3.5 w-3.5" />
+            SERVICE RECORD
+          </div>
           
-          <div className="p-4 border border-muted rounded-lg bg-muted/30">
-            <h3 className="font-medium mb-2 text-foreground">Social Profiles</h3>
-            <div className="flex flex-wrap gap-3">
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-[#E1306C]/10 hover:bg-[#E1306C]/20 text-[#E1306C] px-3 py-1.5 rounded text-sm font-medium transition-colors"
-              >
-                Instagram
-              </a>
-              <a 
-                href="https://linkedin.com/in/pintu-hembram-1a3b691a5" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-[#0077B5]/10 hover:bg-[#0077B5]/20 text-[#0077B5] px-3 py-1.5 rounded text-sm font-medium transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a 
-                href="https://twitter.com/Coder_Pintu" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2] px-3 py-1.5 rounded text-sm font-medium transition-colors"
-              >
-                Twitter
-              </a>
-              <a 
-                href="https://www.youtube.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-[#FF0000]/10 hover:bg-[#FF0000]/20 text-[#FF0000] px-3 py-1.5 rounded text-sm font-medium transition-colors"
-              >
-                YouTube
-              </a>
+          {[
+            { title: 'High Schooling', org: 'Board of Secondary Education, Odisha', detail: 'Govt High School Chandikhole, Jajapur', type: 'edu' },
+            { title: 'Higher Secondary', org: 'CHSE Odisha / Arts Stream', detail: 'Salabani Gram Panchayat Junior College', type: 'edu' },
+            { title: 'Diploma — IT', org: 'SCTEVT, Odisha', detail: 'Barapada School of Engineering & Technology', type: 'edu' },
+            { title: 'B.Tech — CSE', org: 'BPUT, Rourkela', detail: 'Bhadrak Institute of Engineering & Technology', type: 'edu' },
+            { title: 'Active Deployment', org: 'Hembram IT Solutions Pvt. Ltd', detail: 'Multi-domain technology operations', type: 'work' },
+          ].map((item, i) => (
+            <div key={i} className="flex items-start gap-3 p-4 border border-border bg-card/50 rounded hover:border-primary/30 transition-colors group">
+              <div className="mt-0.5">
+                <div className={`p-2 rounded ${item.type === 'work' ? 'bg-secondary/10' : 'bg-primary/10'}`}>
+                  {item.type === 'work' 
+                    ? <Briefcase className="h-4 w-4 text-secondary" /> 
+                    : <GraduationCap className="h-4 w-4 text-primary" />
+                  }
+                </div>
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-sm font-mono font-medium text-foreground">{item.title}</h3>
+                <p className="text-xs text-foreground/70 mt-0.5">{item.org}</p>
+                <p className="text-xs text-muted-foreground">{item.detail}</p>
+              </div>
+              <div className="ml-auto text-[10px] font-mono text-primary/30 self-start group-hover:text-primary/50 transition-colors">
+                {String(i + 1).padStart(2, '0')}
+              </div>
+            </div>
+          ))}
+          
+          <div className="p-4 border border-border bg-muted/20 rounded">
+            <div className="text-xs font-mono text-primary/60 mb-3">COMMUNICATION CHANNELS</div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { name: 'Instagram', url: 'https://instagram.com', color: 'border-secondary/30 text-secondary hover:bg-secondary/10' },
+                { name: 'LinkedIn', url: 'https://linkedin.com/in/pintu-hembram-1a3b691a5', color: 'border-cyber-blue/30 text-cyber-blue hover:bg-cyber-blue/10' },
+                { name: 'X / Twitter', url: 'https://twitter.com/Coder_Pintu', color: 'border-foreground/20 text-foreground/70 hover:bg-foreground/5' },
+                { name: 'YouTube', url: 'https://www.youtube.com', color: 'border-secondary/30 text-secondary hover:bg-secondary/10' },
+              ].map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`px-3 py-1 border rounded text-[11px] font-mono tracking-wider transition-colors ${link.color}`}
+                >
+                  {link.name.toUpperCase()}
+                </a>
+              ))}
             </div>
           </div>
         </div>
