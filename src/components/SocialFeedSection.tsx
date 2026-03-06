@@ -40,7 +40,7 @@ const SocialFeedSection = () => {
       <div className="max-w-2xl mx-auto">
         <a
           className="twitter-timeline"
-          href="https://twitter.com/pintuhembram"
+          href="https://twitter.com/Coder_Pintu"
           data-height="600"
           data-theme="dark"
           data-chrome="noheader nofooter noborders transparent"
