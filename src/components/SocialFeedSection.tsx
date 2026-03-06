@@ -1,9 +1,18 @@
 
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    twttr?: {
+      widgets: {
+        load: () => void;
+      };
+    };
+  }
+}
+
 const SocialFeedSection = () => {
   useEffect(() => {
-    // Load Twitter widgets script if not already loaded
     if (!document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
       const script = document.createElement('script');
       script.src = 'https://platform.twitter.com/widgets.js';
@@ -12,9 +21,8 @@ const SocialFeedSection = () => {
       document.body.appendChild(script);
     }
 
-    // Reload widgets after component mounts
     const timer = setTimeout(() => {
-      if (window.twttr && window.twttr.widgets) {
+      if (window.twttr?.widgets) {
         window.twttr.widgets.load();
       }
     }, 1000);
@@ -34,7 +42,7 @@ const SocialFeedSection = () => {
           className="twitter-timeline"
           href="https://twitter.com/pintuhembram"
           data-height="600"
-          data-theme="light"
+          data-theme="dark"
           data-chrome="noheader nofooter noborders transparent"
         >
           Tweets by @pintuhembram
