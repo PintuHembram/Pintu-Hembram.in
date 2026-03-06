@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Twitter, ExternalLink, MessageCircle } from 'lucide-react';
+import { Twitter, ExternalLink, Radio } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -33,7 +33,6 @@ const SocialFeedSection = () => {
 
   useEffect(() => {
     if (!isVisible) return;
-
     if (!document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
       const script = document.createElement('script');
       script.src = 'https://platform.twitter.com/widgets.js';
@@ -41,53 +40,39 @@ const SocialFeedSection = () => {
       script.charset = 'utf-8';
       document.body.appendChild(script);
     }
-
     const timer = setTimeout(() => {
       if (window.twttr?.widgets && embedRef.current) {
         window.twttr.widgets.load(embedRef.current);
       }
     }, 1000);
-
     return () => clearTimeout(timer);
   }, [isVisible]);
 
   return (
-    <section
-      id="social-feed"
-      ref={sectionRef}
-      className="section-container"
-    >
-      {/* Header */}
-      <div className={`flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+    <section id="social-feed" ref={sectionRef} className="section-container">
+      <div className={`flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
         <div>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
-              <Twitter className="w-5 h-5" />
-            </div>
-            <h2 className="section-heading mb-0">Social Feed</h2>
+          <div className="flex items-center gap-3 mb-2">
+            <Twitter className="h-5 w-5 text-primary" />
+            <h2 className="section-heading">SIGNAL INTERCEPT</h2>
           </div>
-          <p className="text-muted-foreground max-w-lg">
-            Stay updated with my latest thoughts, insights, and dev updates on X.
-          </p>
+          <p className="text-muted-foreground text-xs font-mono tracking-wider">// LIVE FEED FROM X — @Coder_Pintu</p>
         </div>
         <a
           href="https://x.com/Coder_Pintu"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-all duration-300"
+          className="inline-flex items-center gap-2 px-3 py-1.5 border border-primary/30 bg-primary/5 rounded text-xs font-mono text-primary hover:bg-primary/10 transition-colors tracking-wider"
         >
-          Follow @Coder_Pintu
-          <ExternalLink className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          FOLLOW FEED
+          <ExternalLink className="w-3 h-3" />
         </a>
       </div>
 
-      {/* Timeline Card */}
       <div className={`max-w-2xl mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="relative rounded-2xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden shadow-lg shadow-black/10">
-          {/* Decorative top gradient */}
-          <div className="h-1 w-full bg-gradient-to-r from-primary via-accent to-primary" />
-
-          {/* Embedded timeline */}
+        <div className="border border-border bg-card/50 rounded overflow-hidden bracket-card">
+          <div className="h-0.5 w-full bg-primary/50" />
+          
           <div ref={embedRef} className="p-4">
             <a
               className="twitter-timeline"
@@ -96,26 +81,25 @@ const SocialFeedSection = () => {
               data-theme="dark"
               data-chrome="noheader nofooter noborders transparent"
             >
-              <div className="flex flex-col items-center justify-center py-20 text-muted-foreground gap-3">
-                <MessageCircle className="w-8 h-8 animate-pulse" />
-                <span className="text-sm">Loading tweets…</span>
+              <div className="flex flex-col items-center justify-center py-16 text-muted-foreground gap-3">
+                <Radio className="w-6 h-6 status-pulse text-primary/50" />
+                <span className="text-xs font-mono tracking-wider">ACQUIRING SIGNAL…</span>
               </div>
             </a>
           </div>
 
-          {/* Bottom bar */}
-          <div className="px-4 py-3 border-t border-border bg-muted/30 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="px-4 py-2.5 border-t border-border bg-muted/20 flex items-center justify-between text-[10px] font-mono text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Live from X
+              <span className="w-1.5 h-1.5 rounded-full bg-cyber-green status-pulse" />
+              FEED ACTIVE
             </span>
             <a
               href="https://x.com/Coder_Pintu"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors tracking-wider"
             >
-              View on X →
+              OPEN SOURCE →
             </a>
           </div>
         </div>

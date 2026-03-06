@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Shield, Radio } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +9,6 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  // Update scroll position
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -17,50 +16,63 @@ const Navbar = () => {
   }, []);
 
   const navLinks = isHomePage ? [
-    { name: 'Home', href: '#home', isAnchor: true },
-    { name: 'About', href: '#about', isAnchor: true },
-    { name: 'Skills', href: '#skills', isAnchor: true },
-    { name: 'Projects', href: '#projects', isAnchor: true },
-    { name: 'Blog', href: '/blog', isAnchor: false },
-    { name: 'Contact', href: '#contact', isAnchor: true },
+    { name: 'RECON', href: '#home', isAnchor: true },
+    { name: 'INTEL', href: '#about', isAnchor: true },
+    { name: 'ARSENAL', href: '#skills', isAnchor: true },
+    { name: 'OPS', href: '#projects', isAnchor: true },
+    { name: 'BLOG', href: '/blog', isAnchor: false },
+    { name: 'COMMS', href: '#contact', isAnchor: true },
   ] : [
-    { name: 'Home', href: '/', isAnchor: false },
-    { name: 'Blog', href: '/blog', isAnchor: false },
+    { name: 'HQ', href: '/', isAnchor: false },
+    { name: 'BLOG', href: '/blog', isAnchor: false },
   ];
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrollY > 20 ? 'bg-background/90 backdrop-blur-md shadow-md' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrollY > 20 
+          ? 'bg-background/95 backdrop-blur-md border-primary/20 shadow-[0_2px_20px_-5px_hsl(var(--primary)/0.15)]' 
+          : 'bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14">
           <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center">
-              <span className="text-xl font-bold text-foreground">Pintu Hembram</span>
+            <a href="#home" className="flex items-center gap-2 group">
+              <Shield className="h-5 w-5 text-primary" />
+              <span className="text-sm font-mono font-bold text-foreground tracking-widest uppercase">
+                P.Hembram
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1 ml-2 px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-mono">
+                <Radio className="h-2.5 w-2.5 status-pulse" />
+                ONLINE
+              </span>
             </a>
           </div>
           
           {/* Desktop menu */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
-              {navLinks.map((link) => (
+            <div className="flex items-center gap-1">
+              {navLinks.map((link, i) => (
                 link.isAnchor ? (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-foreground/80 hover:text-foreground px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="text-muted-foreground hover:text-primary px-3 py-1.5 text-xs font-mono font-medium tracking-wider transition-colors relative group"
                   >
+                    <span className="text-primary/40 mr-1">{String(i + 1).padStart(2, '0')}</span>
                     {link.name}
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   </a>
                 ) : (
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="text-foreground/80 hover:text-foreground px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="text-muted-foreground hover:text-primary px-3 py-1.5 text-xs font-mono font-medium tracking-wider transition-colors relative group"
                   >
+                    <span className="text-primary/40 mr-1">{String(i + 1).padStart(2, '0')}</span>
                     {link.name}
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                   </Link>
                 )
               ))}
@@ -71,9 +83,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="bg-muted/50 inline-flex items-center justify-center p-2 rounded-md text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent"
+              className="inline-flex items-center justify-center p-2 text-muted-foreground hover:text-primary border border-border rounded transition-colors"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
           </div>
         </div>
@@ -81,25 +93,27 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
+        <div className="md:hidden bg-background/98 backdrop-blur-lg border-t border-border">
+          <div className="px-4 py-2 space-y-0.5">
+            {navLinks.map((link, i) => (
               link.isAnchor ? (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-foreground/80 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-primary px-3 py-2.5 text-xs font-mono tracking-wider transition-colors border-l-2 border-transparent hover:border-primary hover:bg-primary/5"
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  <span className="text-primary/40">{String(i + 1).padStart(2, '0')}</span>
                   {link.name}
                 </a>
               ) : (
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="text-foreground/80 hover:text-foreground block px-3 py-2 rounded-md text-base font-medium"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-primary px-3 py-2.5 text-xs font-mono tracking-wider transition-colors border-l-2 border-transparent hover:border-primary hover:bg-primary/5"
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  <span className="text-primary/40">{String(i + 1).padStart(2, '0')}</span>
                   {link.name}
                 </Link>
               )

@@ -1,6 +1,5 @@
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import {
   ExternalLink,
   Github,
@@ -9,156 +8,118 @@ import {
   Mail,
   Twitter,
   Youtube,
+  Radio,
+  Send,
 } from 'lucide-react';
 
 const ContactSection = () => {
   const socialLinks = [
-    {
-      name: 'GitHub',
-      url: 'https://github.com/PintuHembram',
-      icon: <Github className="h-6 w-6" />,
-      color: 'bg-[#171515]/10 hover:bg-[#171515]/20 text-[#171515]'
-    },
-    {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/pintu-hembram-1a3b691a5',
-      icon: <Linkedin className="h-6 w-6" />,
-      color: 'bg-[#0077B5]/10 hover:bg-[#0077B5]/20 text-[#0077B5]'
-    },
-    {
-      name: 'X (Twitter)',
-      url: 'https://x.com/Coder_Pintu',
-      icon: <Twitter className="h-6 w-6" />,
-      color: 'bg-[#1DA1F2]/10 hover:bg-[#1DA1F2]/20 text-[#1DA1F2]'
-    },
-    {
-      name: 'Instagram',
-      url: 'https://instagram.com/gareebengineer_pin2',
-      icon: <Instagram className="h-6 w-6" />,
-      color: 'bg-[#E1306C]/10 hover:bg-[#E1306C]/20 text-[#E1306C]'
-    },
-    {
-      name: 'YouTube',
-      url: 'https://youtube.com/@HoCoder',
-      icon: <Youtube className="h-6 w-6" />,
-      color: 'bg-[#FF0000]/10 hover:bg-[#FF0000]/20 text-[#FF0000]'
-    },
-    {
-      name: 'Blog',
-      url: 'https://hembramit.blogspot.com/',
-      icon: <ExternalLink className="h-6 w-6" />,
-      color: 'bg-[#FF5722]/10 hover:bg-[#FF5722]/20 text-[#FF5722]'
-    },
+    { name: 'GitHub', url: 'https://github.com/PintuHembram', icon: Github },
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/pintu-hembram-1a3b691a5', icon: Linkedin },
+    { name: 'X', url: 'https://x.com/Coder_Pintu', icon: Twitter },
+    { name: 'Instagram', url: 'https://instagram.com/gareebengineer_pin2', icon: Instagram },
+    { name: 'YouTube', url: 'https://youtube.com/@HoCoder', icon: Youtube },
+    { name: 'Blog', url: 'https://hembramit.blogspot.com/', icon: ExternalLink },
   ];
 
   return (
     <section id="contact" className="section-container pb-24">
-      <h2 className="section-heading">Get In Touch</h2>
+      <div className="flex items-center gap-3 mb-2">
+        <Radio className="h-5 w-5 text-primary" />
+        <h2 className="section-heading">COMMS CHANNEL</h2>
+      </div>
+      <p className="text-muted-foreground text-xs font-mono mb-8 tracking-wider">// ESTABLISH SECURE CONNECTION</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <Card className="border-muted bg-card/50 h-full">
-            <CardContent className="p-6 flex flex-col h-full">
-              <h3 className="text-xl font-bold mb-4">Contact Information</h3>
-              
-              <div className="space-y-4">
-                <p className="text-foreground/70">
-                  I am a passionate Software Engineer and Full-Stack Developer with a strong focus on building scalable, secure, and high-performance web applications. I actively work across the full development lifecycle—from requirement analysis and system design to frontend implementation, backend development, database integration, and deployment.
-                  I am open to new professional opportunities, freelance work, technical collaborations, and innovative projects where I can contribute my skills in modern web technologies, problem-solving, and system optimization. I enjoy working on projects that create real-world impact, improve user experience, and follow clean architecture and best development practices.
-                  If you are looking to collaborate on a product, need a reliable full-stack developer for your project, or want to discuss ideas related to software engineering, web development, or technology solutions, feel free to connect with me through any of the platforms listed below. I am always open to meaningful conversations and long-term professional collaborations.
-                </p>
-                
-                <div className="flex items-center gap-2 text-foreground/80">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <a href="mailto:pintuhembram@hembram.onmicrosoft.com" className="hover:text-primary transition-colors">
-                    pintuhembram@hembram.onmicrosoft.com
-                  </a>
-                </div>
-                
-                <div className="pt-2 mt-auto">
-                  <h4 className="text-sm font-medium text-foreground/60 mb-3">Connect with me:</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {socialLinks.map((link, index) => (
-                      <a
-                        key={index}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${link.color} dark:bg-opacity-20`}
-                      >
-                        {link.icon}
-                        <span>{link.name}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="border border-border bg-card/50 rounded p-6 bracket-card">
+          <div className="text-xs font-mono text-primary/60 mb-4 tracking-widest">CONTACT INTEL</div>
+          
+          <p className="text-xs text-muted-foreground leading-relaxed mb-6">
+            Open to professional opportunities, freelance operations, technical collaborations, and innovative missions. Specializing in full-stack development, system architecture, and secure application deployment.
+          </p>
+          
+          <div className="flex items-center gap-2 text-sm mb-6 p-3 border border-border bg-muted/20 rounded">
+            <Mail className="h-4 w-4 text-primary flex-shrink-0" />
+            <a href="mailto:pintuhembram@hembram.onmicrosoft.com" className="text-xs font-mono text-foreground/80 hover:text-primary transition-colors truncate">
+              pintuhembram@hembram.onmicrosoft.com
+            </a>
+          </div>
+          
+          <div className="text-xs font-mono text-primary/60 mb-3 tracking-widest">NETWORK LINKS</div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-2 border border-border bg-muted/20 rounded text-xs font-mono text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors"
+              >
+                <link.icon className="h-3.5 w-3.5" />
+                {link.name.toUpperCase()}
+              </a>
+            ))}
+          </div>
         </div>
         
-        <div>
-          <Card className="border-muted bg-card/50 h-full">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold mb-4">Send Me a Message</h3>
-              
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="w-full px-3 py-2 bg-muted border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="w-full px-3 py-2 bg-muted border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      placeholder="Your email"
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium">
-                    Subject
-                  </label>
-                  <input
-                    id="subject"
-                    type="text"
-                    className="w-full px-3 py-2 bg-muted border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    placeholder="Subject of your message"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full px-3 py-2 bg-muted border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-                    placeholder="Your message"
-                  ></textarea>
-                </div>
-                
-                <Button type="submit" className="w-full">
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+        <div className="border border-border bg-card/50 rounded p-6 bracket-card">
+          <div className="text-xs font-mono text-primary/60 mb-4 tracking-widest">TRANSMIT MESSAGE</div>
+          
+          <form className="space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <label htmlFor="name" className="text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
+                  Callsign
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  className="w-full px-3 py-2 bg-muted/30 border border-border rounded text-xs font-mono text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 placeholder:text-muted-foreground/50 transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="email" className="text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
+                  Frequency
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  className="w-full px-3 py-2 bg-muted/30 border border-border rounded text-xs font-mono text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 placeholder:text-muted-foreground/50 transition-colors"
+                  placeholder="Your email"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-1.5">
+              <label htmlFor="subject" className="text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
+                Subject Line
+              </label>
+              <input
+                id="subject"
+                type="text"
+                className="w-full px-3 py-2 bg-muted/30 border border-border rounded text-xs font-mono text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 placeholder:text-muted-foreground/50 transition-colors"
+                placeholder="Mission brief"
+              />
+            </div>
+            
+            <div className="space-y-1.5">
+              <label htmlFor="message" className="text-[10px] font-mono text-muted-foreground tracking-widest uppercase">
+                Transmission
+              </label>
+              <textarea
+                id="message"
+                rows={4}
+                className="w-full px-3 py-2 bg-muted/30 border border-border rounded text-xs font-mono text-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 placeholder:text-muted-foreground/50 resize-none transition-colors"
+                placeholder="Enter your message..."
+              />
+            </div>
+            
+            <Button type="submit" className="w-full font-mono text-xs tracking-widest uppercase gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
+              <Send className="h-3.5 w-3.5" />
+              TRANSMIT
+            </Button>
+          </form>
         </div>
       </div>
     </section>
