@@ -119,7 +119,8 @@ const HeroSection = () => {
             className={`font-mono text-sm md:text-base text-muted-foreground mb-8 h-6 ${animate ? 'animate-fade-in' : 'opacity-0'}`}
             style={{ animationDelay: '0.7s' }}
           >
-            {typedText}
+            Computer Science Engineering //{' '}
+            <span className="text-primary font-bold">{displayedRole}</span>
             <span className="inline-block w-2 h-4 bg-primary/80 ml-0.5 animate-flicker" />
           </p>
           
