@@ -9,6 +9,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 import SocialFeedSection from '@/components/SocialFeedSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import TerminalEasterEgg from '@/components/TerminalEasterEgg';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <SocialFeedSection />
       <ContactSection />
       <Footer />
+      <TerminalEasterEgg />
     </div>
   );
 };
