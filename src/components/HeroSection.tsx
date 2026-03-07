@@ -1,26 +1,52 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Shield, Crosshair, Wifi } from 'lucide-react';
 
+const roles = [
+  'Security Enthusiast',
+  'Cyber Security',
+  'Android Developer',
+  'Website Developer',
+  'Social Activist',
+  'Tribe Leader',
+];
+
 const HeroSection = () => {
   const [animate, setAnimate] = useState(false);
-  const [typedText, setTypedText] = useState('');
-  const fullText = 'Computer Science Engineering // Security Enthusiast';
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayedRole, setDisplayedRole] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     setAnimate(true);
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i <= fullText.length) {
-        setTypedText(fullText.slice(0, i));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 40);
-    return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting) {
+      if (displayedRole.length < currentRole.length) {
+        timeout = setTimeout(() => {
+          setDisplayedRole(currentRole.slice(0, displayedRole.length + 1));
+        }, 60);
+      } else {
+        timeout = setTimeout(() => setIsDeleting(true), 2000);
+      }
+    } else {
+      if (displayedRole.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayedRole(displayedRole.slice(0, -1));
+        }, 30);
+      } else {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedRole, isDeleting, roleIndex]);
 
   return (
     <section 
